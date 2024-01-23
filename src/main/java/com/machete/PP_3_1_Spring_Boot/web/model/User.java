@@ -7,10 +7,9 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-import org.springframework.stereotype.Component;
 
 
-@Component
+
 @Entity
 @Table(name = "users")
 public class User {
@@ -30,7 +29,7 @@ public class User {
         this.lastName = lastName;
     }
 
-    public User () {
+    public User() {
 
     }
 
