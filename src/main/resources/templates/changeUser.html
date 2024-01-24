@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Change User</title>
+</head>
+<body>
+
+<h3>Change User</h3>
+
+<form action="#" th:action="@{/change}" th:object="${user}" method="post">
+    <input type="hidden" th:name="id" th:value="${param.id}" />
+
+    <label for="namedelete">Name</label>
+    <input type="text" th:field="*{name}" id="namedelete" placeholder="Name">
+
+    <label for="lnchange">Last Name</label>
+    <input type="text" th:field="*{lastName}" id="lnchange" placeholder="Last Name">
+    <input type="submit" value="Change User">
+</form>
+
+</body>
+</html>

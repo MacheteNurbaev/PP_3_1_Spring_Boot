@@ -8,6 +8,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 @Controller
 public class UserController {
@@ -27,6 +29,12 @@ public class UserController {
         return "usersTable";
     }
 
+    @GetMapping(value = "/goToChangeUser")
+    public String goToChangeUser (Model model) {
+        model.addAttribute("user", new User());
+        return "changeUser";
+    }
+
     @PostMapping("/add")
     public String add(@ModelAttribute User user, Model model) {
         model.addAttribute("user", user);
@@ -35,8 +43,8 @@ public class UserController {
     }
 
     @PostMapping("/delete")
-    public String delete(@ModelAttribute User user) {
-        userService.deleteUser(user);
+    public String delete(@RequestParam Long id) {
+        userService.deleteUser(id);
         return "redirect:/";
     }
 
