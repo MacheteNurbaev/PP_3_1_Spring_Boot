@@ -24,7 +24,7 @@ public class UserController {
 
 
     @GetMapping(value = "/")
-    public String greetingForm(Model model) {
+    public String showUsersTable(Model model) {
         model.addAttribute("user", new User());
         model.addAttribute("users", userService.getAllUsers());
 
