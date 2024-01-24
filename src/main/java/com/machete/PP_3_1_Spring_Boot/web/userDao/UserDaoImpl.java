@@ -23,7 +23,7 @@ public class UserDaoImpl implements UserDao {
     @Override
     public void deleteUser(Long id) {
         User us = entityManager.find(User.class, id);
-        if(us == null) {
+        if (us == null) {
             throw new EntityNotFoundException();
         }
         entityManager.remove(us);
@@ -40,7 +40,7 @@ public class UserDaoImpl implements UserDao {
     @Override
     public void changeUser(User user) {
         User us = entityManager.find(User.class, user.getId());
-        if(us == null) {
+        if (us == null) {
             throw new EntityNotFoundException();
         }
         us.setId(user.getId());
