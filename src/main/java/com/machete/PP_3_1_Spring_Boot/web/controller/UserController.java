@@ -12,6 +12,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.ArrayList;
+import java.util.List;
+
 
 @Controller
 public class UserController {
@@ -25,23 +28,30 @@ public class UserController {
 
     @GetMapping(value = "/")
     public String showUsersTable(Model model) {
-        model.addAttribute("user", new User());
         model.addAttribute("users", userService.getAllUsers());
 
         return "usersTable";
     }
 
     @GetMapping(value = "/goToChangeUser")
-    public String goToChangeUser(Model model) {
+    public String goToChangeUser(@RequestParam Long id,Model model) {
+        List<User> user = new ArrayList<>();
+        user.add(userService.getUser(id));
+        model.addAttribute("users", user);
         model.addAttribute("user", new User());
         return "changeUser";
+    }
+
+    @GetMapping(value = "/goToAddUser")
+    public String goToAddUser(Model model) {
+        model.addAttribute("user", new User());
+        return "addUser";
     }
 
     @PostMapping("/add")
     public String add(@Valid @ModelAttribute User user, BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
-            model.addAttribute("users", userService.getAllUsers());
-            return "usersTable";
+            return "addUser";
 
         }
         model.addAttribute("user", user);

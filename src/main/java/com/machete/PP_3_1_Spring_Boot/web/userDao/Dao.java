@@ -4,7 +4,7 @@ import com.machete.PP_3_1_Spring_Boot.web.model.User;
 
 import java.util.List;
 
-public interface UserDao {
+public interface Dao {
 
     List<User> getAllUsers();
 
@@ -13,4 +13,6 @@ public interface UserDao {
     void addUser(User user);
 
     void changeUser(User user);
+
+    User getUser(Long id);
 }

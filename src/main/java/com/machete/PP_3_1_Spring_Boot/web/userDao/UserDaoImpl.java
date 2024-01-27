@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public class UserDaoImpl implements UserDao {
+public class UserDaoImpl implements Dao {
 
     @PersistenceContext
     private EntityManager entityManager;
@@ -50,5 +50,14 @@ public class UserDaoImpl implements UserDao {
         entityManager.flush();
 
 
+    }
+
+    @Override
+    public User getUser(Long id) {
+        User us = entityManager.find(User.class, id);
+        if(us == null) {
+            throw new EntityNotFoundException();
+        }
+        return us;
     }
 }
